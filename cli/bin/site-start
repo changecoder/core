@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+
+const program = require('commander')
+const Site = require('../site')
+
+program
+  .option('-c, --config <path>', 'set config path. defaults to ./changecoder.config.js')
+  .parse(process.argv)
+
+Site.start(program)

@@ -43,8 +43,7 @@ const processStack = (stack: string): ReportData => {
         line
     }
 }
-const globalErrorListener = () => {
-    let errorList = []
+const globalErrorListener = (errorList: Array<any>) => {
     // 资源加载失败 （字体加载失败是否触发待确定）
     window.addEventListener('error', (e: ErrorEvent) => {
         const info = createInfo({
@@ -63,7 +62,7 @@ const globalErrorListener = () => {
     // JS运行时失败
     window.onerror = function (msg, _url, line, col, error) {
         const info = createInfo({
-            msg: error.stack ? error.stack.toString() : msg as string,
+            msg: error?.stack ? error.stack.toString() : msg as string,
             data: {
                 resourceUrl: _url,
                 line,
@@ -85,6 +84,6 @@ const globalErrorListener = () => {
     // 页面奔溃处理
 }
 
-export default {
-    registerErrorEvent: globalErrorListener
+export {
+    globalErrorListener as registerErrorEvent
 }

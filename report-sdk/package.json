@@ -1,4 +1,8 @@
 {
-    "name": "@changecoder/web-report",
-    "version": "0.0.1"
+    "name": "@changecoder/report-sdk",
+    "version": "0.0.1",
+    "main": "./index.ts",
+    "dependencies": {
+        "ajax-hook": "^2.0.3"
+    }
 }

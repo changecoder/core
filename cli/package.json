@@ -5,7 +5,8 @@
         "ccui": "./bin/ccui",
         "ccui-run": "./bin/ccui-run",
         "site": "./bin/site",
-        "site-start": "./bin/site-start"
+        "site-start": "./bin/site-start",
+        "site-dev": "./bin/site-dev"
     },
     "dependencies": {
         "@babel/core": "^7.16.5",

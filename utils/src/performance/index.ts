@@ -10,7 +10,7 @@ const resource = isSupported && (performance.getEntriesByType('resource') as Per
  */
 const getTimePerformance = () => {
     if (!timing) {
-        return false
+        return {}
     }
     return {
         // 重定向时间
@@ -44,7 +44,7 @@ const getTimePerformance = () => {
 
 const getResourcePerformance = () => {
     if (!resource) {
-        return false
+        return []
     }
     const resourceList = []
     resource.forEach(item => {

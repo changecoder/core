@@ -1,15 +1,18 @@
 import { 
-    proxy, 
     XhrError, 
     XhrRequestConfig, 
     XhrResponse 
 } from 'ajax-hook'
+import * as AjaxHook from 'ajax-hook'
+
 import sendData from './core/send'
 import {
     getTimePerformance,
     getResourcePerformance
 } from './core/performance'
 import { registerErrorEvent } from './core/error'
+
+import * as clientData from './core/agent'
 
 interface ReportOptions {
     domain?: string; // 上报地址
@@ -82,14 +85,14 @@ export default class Report {
 
     sendReport() {
         const url = this.opts.domain
-        const data = {}
+        const data = Object.assign({}, clientData)
         sendData(url as string, data)
     }
 
     start() {
         const { isAjax } = this.opts
         if (isAjax) {
-            proxy({
+            AjaxHook.proxy({
                  //请求发起前进入
                 onRequest: (config: XhrRequestConfig, handler) => {
                     const id = generateId(config.url)
@@ -128,13 +131,19 @@ export default class Report {
             })
         }
         if (this.opts.isPage) {
-            const resourceData = getResourcePerformance()
-            const perforamnceData = getTimePerformance()
-            this.conf.performance = perforamnceData
-            this.conf.resourceList = resourceData
+            window.requestAnimationFrame(() => {
+                const resourceData = getResourcePerformance()
+                const perforamnceData = getTimePerformance()
+                this.conf.performance = perforamnceData
+                this.conf.resourceList = resourceData
+            })
         }
         if (this.opts.isError) {
             registerErrorEvent(this.conf.errorList)
         }
+    }
+
+    getClientData() {
+        return clientData
     }
 }

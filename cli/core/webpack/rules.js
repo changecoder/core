@@ -1,17 +1,9 @@
+const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const babelConfig = require('../config/.babelrc')
 const postcssConfig = require('../config/postcss.config')
 const { resolve } = require('../utils/projectHelper')
-
-const svgRegex = /\.svg(\?v=\d+\.\d+\.\d+)?$/
-const svgOptions = {
-  limit: 10000,
-  minetype: 'image/svg+xml'
-}
-const imageOptions = {
-  limit: 10000
-}
 
 module.exports = [
     // JS,JSX
@@ -85,17 +77,5 @@ module.exports = [
             }
           }
         ]
-    },
-    // SVG
-    {
-        test: svgRegex,
-        loader: 'url-loader',
-        options: svgOptions
-    },
-    // Images
-    {
-        test: /\.(png|jpg|jpeg|gif)(\?v=\d+\.\d+\.\d+)?$/i,
-        loader: 'url-loader',
-        options: imageOptions
     }
 ]

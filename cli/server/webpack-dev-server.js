@@ -1,17 +1,13 @@
 const Webpack = require('webpack')
-const { merge } = require('webpack-merge')
 const WebpackDevServer = require('webpack-dev-server')
 
-const { readConfig } = require('../src/utils/projectHelper')
-const serverConfig = require('../src/config/server.config')
-const defaultConfig = require('../src/webpack/dev.config')
+const serverConfig = require('../core/config/server.config')
+const { getWebpackConfig } = require('../core/utils/config')
 
-exports.start = () => {
+const start = () => {
     process.env.RUN_ENV = 'DEVELOPMENT'
-
-    const customConfig = readConfig('webpack.config.js')
     
-    const webpackConfig = merge({}, defaultConfig, customConfig)
+    const webpackConfig = getWebpackConfig()
 
     const compiler = Webpack(webpackConfig)
 
@@ -26,3 +22,5 @@ exports.start = () => {
       
     runServer()
 }
+
+module.exports = start

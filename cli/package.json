@@ -2,11 +2,9 @@
     "name": "@changecoder/cli",
     "version": "1.0.0-alpha.0",
     "bin": {
-        "ccui": "./bin/ccui",
-        "ccui-run": "./bin/ccui-run",
-        "site": "./bin/site",
-        "site-start": "./bin/site-start",
-        "site-dev": "./bin/site-dev"
+        "coder": "./bin/coder",
+        "coder-start": "./bin/coder-start",
+        "coder-run": "./bin/coder-run"
     },
     "dependencies": {
         "@babel/core": "^7.16.5",
@@ -21,6 +19,7 @@
         "gulp": "^4.0.2",
         "gulp-babel": "^8.0.0",
         "gulp-typescript": "^6.0.0-alpha.1",
+        "html-webpack-plugin": "^5.5.0",
         "less": "^4.1.2",
         "less-loader": "^10.2.0",
         "merge2": "^1.4.1",
@@ -29,13 +28,8 @@
         "postcss": "^8.4.5",
         "postcss-loader": "^6.2.1",
         "postcss-preset-env": "^7.0.2",
-        "rimraf": "^3.0.2",
-        "rucksack-css": "^1.0.2",
-        "through2": "^4.0.2",
         "ts-loader": "^9.2.6",
         "typescript": "^4.5.4",
-        "uglifyjs-webpack-plugin": "^2.2.0",
-        "url-loader": "^4.1.1",
         "webpack": "^5.65.0",
         "webpack-dev-server": "^4.6.0",
         "webpack-merge": "^5.8.0",

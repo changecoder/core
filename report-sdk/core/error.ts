@@ -6,16 +6,12 @@ interface ReportData {
 
 interface InfoData {
     time?: number;
-    from?: string;
-    method?: string;
     msg?: string;
     data?: ReportData;
 }
 
 const createInfo = (data: InfoData) => Object.assign({}, {
-    time: new Date().getTime(),
-    from: 'js',
-    method: 'GET'
+    time: new Date().getTime()
 }, data)
 
 const processStack = (stack: string): ReportData => {
@@ -47,7 +43,6 @@ const globalErrorListener = (errorList: Array<any>) => {
     // 资源加载失败 （字体加载失败是否触发待确定）
     window.addEventListener('error', (e: ErrorEvent) => {
         const info = createInfo({
-            from: 'resource',
             msg: e.error.stack ? e.error.stack.toString(): e.message,
             data: {
                 resourceUrl: (e.target as HTMLLinkElement).href || (e.target as HTMLScriptElement | HTMLImageElement).src || (e.target as HTMLMediaElement).currentSrc,

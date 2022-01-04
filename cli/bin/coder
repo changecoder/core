@@ -7,8 +7,14 @@ program
   .version(package.version)
   .usage('[command] [options]')
   .command('start [options]', 'to start a server')
-  .command('dev [options]', 'to run a webpack dev server')
+  .command('run [options]', 'to run a task')
   .parse(process.argv)
+
+const subCmd = program.args[0]
+
+if (!subCmd || !['run', 'start'].includes(subCmd)) {
+    program.help()
+}
 
 process.on('SIGINT', function() {
   program.runningCommand && program.runningCommand.kill('SIGKILL')

@@ -3,11 +3,9 @@
 const gulp = require('gulp')
 const program = require('commander')
 
-program.on('--help', () => {
-  console.log()
-})
-
-program.parse(process.argv)
+program
+  .option('-c, --config <path>', 'set config path. defaults to ./changecoder.config.js')
+  .parse(process.argv)
 
 function runTask(toRun) {
   const taskInstance = gulp.task(toRun)
@@ -29,9 +27,7 @@ const task = program.args[0]
 if (!task) {
   program.help()
 } else {
-  console.log('ccui run', task)
-
-  require('../src/gulpfile')
+  require('../core/gulpfile')
 
   runTask(task)
 }

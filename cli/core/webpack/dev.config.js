@@ -8,7 +8,8 @@ const config = {
     entry: {
         [pkg.name]: './index'
     },
-    mode: 'development'
+    mode: 'development',
+    devtool: 'source-map'
 }
 
 module.exports = merge({}, commonConfig, config)
